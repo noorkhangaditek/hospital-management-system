@@ -8,10 +8,10 @@ export async function POST(req: Request) {
 
   const result = await streamText({
     model: google('gemini-1.5-flash'),
-    system: "Tum Noor Khan ke assistant ho.", 
+    system: "Tum Noor Khan ke assistant ho.",
     messages,
   });
 
-  // Ye line har version mein chalti hai:
-  return result.toDataStreamResponse();
+  // VS Code ke mutabiq sahi function ye hai:
+  return result.toTextStreamResponse();
 }
