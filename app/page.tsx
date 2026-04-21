@@ -24,14 +24,15 @@ export default function MedicalDashboard() {
     }
   }
 
-  return (
-    <div className="flex h-screen bg-background">
-      <Sidebar activeItem={activeItem} onItemChange={setActiveItem} />
-      <main className="flex-1 overflow-auto">
-        <div className="h-full p-6">
-          {renderContent()}
-        </div>
-      </main>
-    </div>
-  )
+  
+    return (
+  <div className="flex flex-col md:flex-row h-screen bg-background overflow-hidden">
+    <Sidebar activeItem={activeItem} onItemChange={setActiveItem} />
+    <main className="flex-1 overflow-auto">
+      {renderContent()}
+    </main>
+  </div>
+)
+
+  
 }

@@ -18,7 +18,7 @@ export function Sidebar({ activeItem, onItemChange }: SidebarProps) {
   ]
 
   return (
-    <aside className="flex h-full w-64 flex-col bg-sidebar border-r border-sidebar-border">
+   <aside className="flex h-full w-full md:w-64 flex-col bg-sidebar border-b md:border-r border-sidebar-border">
       <div className="flex h-16 items-center gap-3 border-b border-sidebar-border px-6">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
           <span className="text-lg font-bold text-primary-foreground">M</span>
