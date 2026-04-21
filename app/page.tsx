@@ -13,26 +13,28 @@ export default function MedicalDashboard() {
 
   const renderContent = () => {
     switch (activeItem) {
-      case "dashboard":
-        return <DashboardView />
-      case "patients":
-        return <PatientsView />
-      case "assistant":
-        return <AIAssistantView />
-      default:
-        return <DashboardView />
+      case "dashboard": return <DashboardView />
+      case "patients": return <PatientsView />
+      case "assistant": return <AIAssistantView />
+      default: return <DashboardView />
     }
   }
 
-  
-    return (
-  <div className="flex flex-col md:flex-row h-screen bg-background overflow-hidden">
-    <Sidebar activeItem={activeItem} onItemChange={setActiveItem} />
-    <main className="flex-1 overflow-auto">
-      {renderContent()}
-    </main>
-  </div>
-)
+  return (
+    // 'flex-col' mobile ke liye aur 'md:flex-row' laptop ke liye
+    <div className="flex flex-col md:flex-row min-h-screen bg-background">
+      
+      {/* Sidebar Section: Mobile par width full hogi, laptop par fixed 64 */}
+      <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-border bg-card">
+        <Sidebar activeItem={activeItem} onItemChange={setActiveItem} />
+      </aside>
 
-  
+      {/* Main Content Section: Mobile par ye sidebar ke niche aayega */}
+      <main className="flex-1 overflow-y-auto">
+        <div className="p-4 md:p-8">
+          {renderContent()}
+        </div>
+      </main>
+    </div>
+  )
 }
