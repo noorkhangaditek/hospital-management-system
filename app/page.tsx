@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Sidebar } from "@/components/sidebar"
 import { DashboardView } from "@/components/dashboard-view"
 import { PatientsView } from "@/components/patients-view"
-import { AIAssistantView } from "@/components/ai-assistant-view"
+import  AIAssistantView  from "@/components/ai-assistant-view"
 import { Menu, X } from "lucide-react" // Icons ke liye
 
 type NavItem = "dashboard" | "patients" | "assistant"
