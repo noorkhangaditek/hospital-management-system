@@ -4,7 +4,10 @@ import { useChat } from '@ai-sdk/react';
 import { Send, Bot, User } from 'lucide-react';
 
 export default function AIAssistantView() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+  // 1. Yahan humne backend ka rasta bataya hai
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: '/api/chat', 
+  });
 
   return (
     <div className="flex flex-col h-[75vh] bg-card rounded-xl border border-border shadow-md overflow-hidden">
@@ -21,14 +24,21 @@ export default function AIAssistantView() {
               m.role === 'user' ? 'bg-primary text-primary-foreground rounded-tr-none' : 'bg-muted rounded-tl-none'
             }`}>
               {m.role === 'user' ? <User size={16} /> : <Bot size={16} />}
-              <p className="text-sm">{m.content}</p>
+              <p className="text-sm whitespace-pre-wrap">{m.content}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Input Box */}
-      <form onSubmit={handleSubmit} className="p-4 border-t bg-background flex gap-2">
+      {/* 2. onSubmit mein preventDefault add kiya hai taake page reload na ho */}
+      <form 
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(e);
+        }} 
+        className="p-4 border-t bg-background flex gap-2"
+      >
         <input
           className="flex-1 p-2 bg-muted rounded-lg outline-none text-sm border focus:border-primary"
           value={input}
@@ -38,7 +48,7 @@ export default function AIAssistantView() {
         />
         <button 
           type="submit" 
-          disabled={isLoading}
+          disabled={isLoading || !input}
           className="p-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 disabled:opacity-50"
         >
           <Send size={18} />
